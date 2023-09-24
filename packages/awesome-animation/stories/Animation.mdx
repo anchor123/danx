@@ -1,0 +1,152 @@
+{/* DocumentationTemplate.mdx */}
+
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Source,
+  Story,
+} from "@storybook/blocks";
+import * as AnimationStories from "./AwesomeAnimation.stories";
+
+<Meta isTemplate />
+
+<Title />
+
+---
+
+### 基础用法
+
+<Source
+  code={`const animator = new Animator({
+  beginValue: -15,
+  finishValue: 185,
+  setter(target, value) {
+    target.style.left = value + "px";
+  },
+}); 
+animator.start(target, {
+  duration: 1000, // ms
+  easing: "ease",
+  delay: 0,
+});`}
+/>
+
+<Story of={AnimationStories.Basic} />
+
+### 使用对象
+
+<Source
+  code={`
+const animator = new Animator({
+  beginValue: { x: -15, y: -15 },
+  finishValue: { x: 185, y: 185 },
+  setter(target, value) {
+    target.style.left = value.x + "px";
+    target.style.top = value.y + "px";
+  },
+});
+animator.start(target, {
+  duration: 1000, // ms
+  easing: "ease",
+  delay: 0,
+});
+`}
+/>
+
+<Story of={AnimationStories.useObject} />
+
+### 使用多段子动画
+
+<Source
+  code={`
+const animator = new Animator({
+  beginValue: { x: -15, y: -15 },
+  finishValue: { x: 185, y: 185 },
+  setter(target, value) {
+    target.style.left = value.x + "px";
+    target.style.top = value.y + "px";
+  },
+});
+animator
+  .pipe({
+    beginValue: -15,
+    finishValue: 185,
+    setter(target, value) {
+      target.style.top = value + "px";
+    },
+  })
+  .pipe({
+    beginValue: 185,
+    finishValue: -15,
+    setter(target, value) {
+      target.style.left = value + "px";
+    },
+  })
+  .pipe({
+    beginValue: 185,
+    finishValue: -15,
+    setter(target, value) {
+      target.style.top = value + "px";
+    },
+  });
+animator.start(target, {
+  duration: 3000, // ms
+  easing: "ease",
+  delay: 0,
+});
+
+`}
+/>
+
+<Story of={AnimationStories.multipleAnimation} />
+
+### 重复播放
+
+<Source
+  code={`
+const animator = new Animator({
+  beginValue: { x: -15, y: -15 },
+  finishValue: { x: 185, y: 185 },
+  setter(target, value) {
+    target.style.left = value.x + "px";
+    target.style.top = value.y + "px";
+  },
+});
+animator
+  .start(target, {
+    duration: 1000, // ms
+    easing: "ease",
+    delay: 0,
+  })
+  .repeat(3);
+`}
+/>
+
+<Story of={AnimationStories.repeatAnimation} />
+
+### 回滚播放
+
+<Source
+  code={`
+const animator = new Animator({
+  beginValue: { x: -15, y: -15 },
+  finishValue: { x: 185, y: 185 },
+  setter(target, value) {
+    target.style.left = value.x + "px";
+    target.style.top = value.y + "px";
+  },
+});
+animator
+  .start(target, {
+    duration: 1000, // ms
+    easing: "ease",
+    delay: 0,
+  })
+  .repeat(3, true);
+`}
+/>
+
+<Story of={AnimationStories.rollbackAnimation} />

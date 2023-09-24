@@ -1,0 +1,25 @@
+{
+  "name": "danx123",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.4.4",
+    "@storybook/addon-interactions": "^7.4.4",
+    "@storybook/addon-links": "^7.4.4",
+    "@storybook/blocks": "^7.4.4",
+    "@storybook/testing-library": "^0.2.1",
+    "@storybook/vue": "^7.4.4",
+    "@storybook/vue-vite": "^7.4.4",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@vitejs/plugin-vue2": "^2.2.0",
+    "lerna": "^7.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.4.4"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  }
+}
